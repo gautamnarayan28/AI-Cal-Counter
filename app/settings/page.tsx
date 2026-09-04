@@ -2,13 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-const SETTINGS_KEY = "lagoon-calorie-counter-settings-v1";
-
-type Settings = {
-  maintenance: number;
-  deficit: number;
-};
+import type { CalorieSettings as Settings } from "../lib/calorie-data";
+import { loadCloudData, saveCloudData } from "../lib/calorie-data";
 
 const defaults: Settings = {
   maintenance: 2150,
@@ -18,32 +13,33 @@ const defaults: Settings = {
 export default function SettingsPage() {
   const [settings, setSettings] = useState<Settings>(defaults);
   const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
   const dailyTarget = Math.max(settings.maintenance - settings.deficit, 500);
 
   useEffect(() => {
-    try {
-      const existing = window.localStorage.getItem(SETTINGS_KEY);
-      if (existing) {
-        const parsed = JSON.parse(existing) as Partial<Settings>;
-        setSettings({
-          maintenance: Number(parsed.maintenance) || defaults.maintenance,
-          deficit: Number(parsed.deficit) || defaults.deficit,
-        });
-      }
-    } catch {
-      setSettings(defaults);
-    }
+    void loadCloudData()
+      .then((data) => data.settings && setSettings(data.settings))
+      .catch((error) => setSaveError(error instanceof Error ? error.message : "Your settings could not be opened."));
   }, []);
 
-  function saveSettings() {
+  async function saveSettings() {
     const safeSettings = {
       maintenance: Math.max(Math.round(settings.maintenance), 500),
       deficit: Math.max(Math.round(settings.deficit), 0),
     };
-    window.localStorage.setItem(SETTINGS_KEY, JSON.stringify(safeSettings));
-    setSettings(safeSettings);
-    setSaved(true);
-    window.setTimeout(() => setSaved(false), 1800);
+    setSaving(true);
+    setSaveError("");
+    try {
+      const result = await saveCloudData({ settings: safeSettings });
+      setSettings(result.settings || safeSettings);
+      setSaved(true);
+      window.setTimeout(() => setSaved(false), 1800);
+    } catch (error) {
+      setSaveError(error instanceof Error ? error.message : "Your settings could not be saved.");
+    } finally {
+      setSaving(false);
+    }
   }
 
   return (
@@ -129,8 +125,9 @@ export default function SettingsPage() {
           <strong>{dailyTarget.toLocaleString()} target</strong>
         </div>
 
-        <button type="button" className="settings-save" onClick={saveSettings}>
-          {saved ? "Saved ✓" : "Save calorie target"}
+        {saveError && <p className="estimate-error settings-error" role="alert">{saveError}</p>}
+        <button type="button" className="settings-save" disabled={saving} onClick={() => void saveSettings()}>
+          {saving ? "Saving…" : saved ? "Saved to cloud ✓" : "Save calorie target"}
         </button>
       </section>
 

@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import FloatingNav from "../components/FloatingNav";
 import type { Meal } from "../lib/calorie-data";
-import { STORAGE_KEY, localDateKey, readMeals } from "../lib/calorie-data";
+import { loadCloudData, localDateKey, saveCloudData } from "../lib/calorie-data";
 
 function readableDate(key: string) {
   const today = localDateKey(new Date());
@@ -16,16 +16,15 @@ export default function LogsPage() {
   const [meals, setMeals] = useState<Meal[]>([]);
   const [ready, setReady] = useState(false);
   const [editing, setEditing] = useState<Meal | null>(null);
+  const [storageError, setStorageError] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
-    setMeals(readMeals());
-    setReady(true);
+    void loadCloudData()
+      .then((data) => setMeals(data.meals))
+      .catch((error) => setStorageError(error instanceof Error ? error.message : "Your meal history could not be opened."))
+      .finally(() => setReady(true));
   }, []);
-
-  useEffect(() => {
-    if (!ready) return;
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(meals));
-  }, [meals, ready]);
 
   const groups = useMemo(() => {
     const byDate = new Map<string, Meal[]>();
@@ -44,10 +43,23 @@ export default function LogsPage() {
     });
   }
 
+  async function persistMeals(nextMeals: Meal[]) {
+    setIsSaving(true);
+    setStorageError("");
+    try {
+      const saved = await saveCloudData({ meals: nextMeals });
+      setMeals(saved.meals);
+      setEditing(null);
+    } catch (error) {
+      setStorageError(error instanceof Error ? error.message : "Your changes could not be saved.");
+    } finally {
+      setIsSaving(false);
+    }
+  }
+
   function saveEdit() {
     if (!editing) return;
-    setMeals((current) => current.map((meal) => meal.id === editing.id ? editing : meal));
-    setEditing(null);
+    void persistMeals(meals.map((meal) => meal.id === editing.id ? editing : meal));
   }
 
   return (
@@ -66,8 +78,10 @@ export default function LogsPage() {
 
         <div className="storage-note" role="status">
           <span aria-hidden="true" />
-          {ready ? "Saved on this device" : "Opening your history…"}
+          {ready ? "Synced to your private cloud" : "Opening your history…"}
         </div>
+
+        {storageError && <p className="estimate-error cloud-error" role="alert">{storageError}</p>}
 
         {!ready ? null : groups.length === 0 ? (
           <div className="page-empty">
@@ -135,8 +149,8 @@ export default function LogsPage() {
               <div><label htmlFor="edit-calories">Estimated calories</label><div className="calorie-input-wrap"><input id="edit-calories" type="number" min="0" value={editing.calories} onChange={(event) => setEditing({ ...editing, calories: Math.max(0, Number(event.target.value)), low: Math.round(Number(event.target.value) * 0.84), high: Math.round(Number(event.target.value) * 1.22) })} /><span>kcal</span></div></div>
             </div>
             <div className="sheet-actions log-edit-actions">
-              <button className="delete-sheet-button" type="button" onClick={() => { setMeals((current) => current.filter((meal) => meal.id !== editing.id)); setEditing(null); }}>Delete</button>
-              <button className="save-button" type="button" onClick={saveEdit}>Save changes</button>
+              <button className="delete-sheet-button" disabled={isSaving} type="button" onClick={() => void persistMeals(meals.filter((meal) => meal.id !== editing.id))}>Delete</button>
+              <button className="save-button" disabled={isSaving} type="button" onClick={saveEdit}>{isSaving ? "Saving…" : "Save changes"}</button>
             </div>
           </section>
         </div>

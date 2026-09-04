@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, ChangeEvent, FormEvent } from "react";
 import Link from "next/link";
 import FloatingNav from "./components/FloatingNav";
+import { goalFromSettings, loadCloudData, saveCloudData } from "./lib/calorie-data";
 
 type MealItem = {
   id: string;
@@ -27,56 +28,13 @@ type Meal = {
   items: MealItem[];
 };
 
-type Draft = Omit<Meal, "id" | "dateKey" | "time" | "note"> & { editId?: string };
-
-const STORAGE_KEY = "lagoon-calorie-counter-meals-v1";
-const SETTINGS_KEY = "lagoon-calorie-counter-settings-v1";
+type Draft = Omit<Meal, "id" | "dateKey" | "time" | "note">;
 
 function dateKey(date: Date) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
   const day = String(date.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
-}
-
-function startingMealsForToday(): Meal[] {
-  const today = dateKey(new Date());
-  return [
-  {
-    id: "lunch",
-    dateKey: today,
-    time: "13:15",
-    name: "Dal, rice & cucumber salad",
-    note: "Lunch · medium confidence",
-    calories: 610,
-    low: 520,
-    high: 720,
-    confidence: "Medium",
-    assumption: "One bowl of dal and one cup of cooked rice.",
-    items: [
-      { id: "dal", name: "Dal", quantity: 1, unit: "bowl", caloriesPerUnit: 300 },
-      { id: "rice", name: "Cooked rice", quantity: 1, unit: "cup", caloriesPerUnit: 260 },
-      { id: "salad", name: "Cucumber salad", quantity: 1, unit: "serving", caloriesPerUnit: 50 },
-    ],
-  },
-  {
-    id: "breakfast",
-    dateKey: today,
-    time: "08:30",
-    name: "Masala omelette & toast",
-    note: "Breakfast · high confidence",
-    calories: 430,
-    low: 380,
-    high: 500,
-    confidence: "High",
-    assumption: "Two eggs, vegetables and two slices of toast.",
-    items: [
-      { id: "eggs", name: "Eggs", quantity: 2, unit: "egg", caloriesPerUnit: 90 },
-      { id: "vegetables", name: "Masala vegetables", quantity: 1, unit: "serving", caloriesPerUnit: 50 },
-      { id: "toast", name: "Toast", quantity: 2, unit: "slice", caloriesPerUnit: 100 },
-    ],
-  },
-  ];
 }
 
 function compressPhoto(file: File) {
@@ -111,11 +69,11 @@ function compressPhoto(file: File) {
 
 export default function Home() {
   const [goal, setGoal] = useState(1900);
-  const [meals, setMeals] = useState<Meal[]>(startingMealsForToday);
+  const [meals, setMeals] = useState<Meal[]>([]);
   const [description, setDescription] = useState("");
   const [draft, setDraft] = useState<Draft | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [storageReady, setStorageReady] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const [todayLabel, setTodayLabel] = useState("TODAY");
   const [estimateError, setEstimateError] = useState("");
   const cameraInput = useRef<HTMLInputElement>(null);
@@ -135,36 +93,13 @@ export default function Home() {
       }).format(new Date()).toUpperCase().replace(",", " ·"),
     );
 
-    try {
-      const saved = window.localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsed: unknown = JSON.parse(saved);
-        if (Array.isArray(parsed)) setMeals(parsed as Meal[]);
-      }
-      const savedSettings = window.localStorage.getItem(SETTINGS_KEY);
-      if (savedSettings) {
-        const parsedSettings = JSON.parse(savedSettings) as { maintenance?: number; deficit?: number };
-        const maintenance = Number(parsedSettings.maintenance);
-        const deficit = Number(parsedSettings.deficit);
-        if (Number.isFinite(maintenance) && Number.isFinite(deficit)) {
-          setGoal(Math.max(maintenance - deficit, 500));
-        }
-      }
-    } catch {
-      // Keep the starter meals if local storage is unavailable or malformed.
-    } finally {
-      setStorageReady(true);
-    }
+    void loadCloudData()
+      .then((data) => {
+        setMeals(data.meals);
+        setGoal(goalFromSettings(data.settings));
+      })
+      .catch((error) => setEstimateError(error instanceof Error ? error.message : "Your saved meals could not be opened."));
   }, []);
-
-  useEffect(() => {
-    if (!storageReady) return;
-    try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(meals));
-    } catch {
-      // The prototype can continue in memory if browser storage is unavailable.
-    }
-  }, [meals, storageReady]);
 
   async function beginEstimate(text: string, imageDataUrl?: string) {
     const cleanText = text.trim();
@@ -239,7 +174,7 @@ export default function Home() {
     }
   }
 
-  function saveDraft() {
+  async function saveDraft() {
     if (!draft) return;
 
     const now = new Date();
@@ -250,10 +185,19 @@ export default function Home() {
       time: now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false }),
       note: `Meal · ${draft.confidence.toLowerCase()} confidence`,
     };
-    setMeals((current) => [newMeal, ...current]);
-
-    setDescription("");
-    setDraft(null);
+    const nextMeals = [newMeal, ...meals];
+    setIsSaving(true);
+    setEstimateError("");
+    try {
+      const saved = await saveCloudData({ meals: nextMeals });
+      setMeals(saved.meals);
+      setDescription("");
+      setDraft(null);
+    } catch (error) {
+      setEstimateError(error instanceof Error ? error.message : "This meal could not be saved.");
+    } finally {
+      setIsSaving(false);
+    }
   }
 
   function changeItemQuantity(itemId: string, change: number) {
@@ -428,7 +372,7 @@ export default function Home() {
             <p className="prototype-note">AI estimate—review visible items and quantities before saving.</p>
             <div className="sheet-actions">
               <button type="button" className="secondary-button" onClick={() => setDraft(null)}>Cancel</button>
-              <button type="button" className="save-button" onClick={saveDraft}>{draft.editId ? "Save changes" : "Add to today"}</button>
+              <button type="button" className="save-button" disabled={isSaving} onClick={() => void saveDraft()}>{isSaving ? "Saving…" : "Add to today"}</button>
             </div>
           </section>
         </div>

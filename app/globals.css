@@ -408,6 +408,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .sheet-actions button { min-height: 51px; border-radius: 16px; font-weight: 650; }
 .secondary-button { border: 1px solid var(--line); color: var(--ink); background: white; }
 .save-button { border: 0; color: #052f37; background: var(--water); }
+.save-button:disabled, .delete-sheet-button:disabled, .settings-save:disabled { opacity: 0.55; }
 
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
@@ -495,6 +496,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .page-empty span { color: #7d8c8f; font-size: 10px; line-height: 1.5; }
 .log-edit-actions { margin-top: 20px; }
 .delete-sheet-button { border: 1px solid rgba(163, 66, 66, 0.2); color: #a34242; background: #fff4f4; }
+.cloud-error { margin: -10px 0 22px; color: #ffaaaa; text-align: left; }
+.settings-error { margin: 0 0 12px; color: #ffaaaa; }
 
 .progress-section.page-section, .insights-section.page-section { padding-top: max(34px, env(safe-area-inset-top)); }
 .page-section .feature-heading h1 { margin: 0 0 18px; font-size: 42px; font-weight: 390; line-height: 0.98; letter-spacing: -0.06em; }

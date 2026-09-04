@@ -4,15 +4,17 @@ import { useEffect, useMemo, useState } from "react";
 import type { CSSProperties } from "react";
 import FloatingNav from "../components/FloatingNav";
 import type { Meal } from "../lib/calorie-data";
-import { localDateKey, readGoal, readMeals } from "../lib/calorie-data";
+import { goalFromSettings, loadCloudData, localDateKey } from "../lib/calorie-data";
 
 export default function ProgressPage() {
   const [meals, setMeals] = useState<Meal[]>([]);
   const [goal, setGoal] = useState(1900);
 
   useEffect(() => {
-    setMeals(readMeals());
-    setGoal(readGoal());
+    void loadCloudData().then((data) => {
+      setMeals(data.meals);
+      setGoal(goalFromSettings(data.settings));
+    });
   }, []);
 
   const days = useMemo(() => Array.from({ length: 7 }, (_, index) => {
