@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import Link from "next/link";
 import FloatingNav from "./components/FloatingNav";
+import JournalIcon from "./components/JournalIcon";
 import { goalFromSettings, loadCloudData, saveCloudData } from "./lib/calorie-data";
 
 type MealItem = {
@@ -233,8 +234,7 @@ export default function Home() {
         </header>
 
         <div className="welcome">
-          <p>Your daily journal</p>
-          <h1 id="welcome-heading">Today<span className="red-period">.</span></h1>
+          <h1 id="welcome-heading">Today</h1>
         </div>
 
         <div className="calorie-figure">
@@ -247,7 +247,7 @@ export default function Home() {
           </section>
         </div>
         <div className="daily-totals">
-          <div><span className="red-dot" aria-hidden="true" /><span>Eaten</span><strong>{consumed.toLocaleString()}</strong></div>
+          <div><span className="accent-dot" aria-hidden="true" /><span>Eaten</span><strong>{consumed.toLocaleString()}</strong></div>
           <div><span>Daily target</span><strong>{goal.toLocaleString()}</strong></div>
         </div>
         <label className="composer-label" htmlFor="meal-description">What did you eat?</label>
@@ -262,7 +262,7 @@ export default function Home() {
               value={description}
               onChange={(event) => setDescription(event.target.value)}
             />
-            <button type="submit" className="send-button" aria-label="Estimate calories" disabled={!description.trim()}>↑</button>
+            <button type="submit" className="send-button" aria-label="Estimate calories" disabled={!description.trim()}><JournalIcon name="arrow" /></button>
           </div>
           <button
             type="button"
@@ -270,7 +270,7 @@ export default function Home() {
             aria-label={description.trim() ? "Add a photo to this description" : "Choose a meal photo"}
             onClick={() => cameraInput.current?.click()}
           >
-            <span className="camera-glyph" aria-hidden="true" />
+            <JournalIcon name="camera" />
           </button>
           <input ref={cameraInput} className="file-input" type="file" accept="image/*" capture="environment" onChange={selectPhoto} />
         </form>

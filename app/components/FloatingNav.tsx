@@ -1,12 +1,13 @@
 import Link from "next/link";
+import Image from "next/image";
 
 type NavPage = "home" | "logs" | "progress" | "insights";
 
-const items: { id: NavPage; href: string; icon: string; label: string }[] = [
-  { id: "home", href: "/", icon: "◇", label: "Home" },
-  { id: "logs", href: "/logs", icon: "≡", label: "Logs" },
-  { id: "progress", href: "/progress", icon: "∿", label: "Progress" },
-  { id: "insights", href: "/insights", icon: "✦", label: "Insights" },
+const items: { id: NavPage; href: string; label: string }[] = [
+  { id: "home", href: "/", label: "Home" },
+  { id: "logs", href: "/logs", label: "Logs" },
+  { id: "progress", href: "/progress", label: "Progress" },
+  { id: "insights", href: "/insights", label: "Insights" },
 ];
 
 export default function FloatingNav({ active }: { active: NavPage }) {
@@ -19,8 +20,10 @@ export default function FloatingNav({ active }: { active: NavPage }) {
           href={item.href}
           key={item.id}
         >
-          <span aria-hidden="true"></span>
-          {item.label}
+          <span className="dock-art" aria-hidden="true">
+            <Image src={item.id === "home" ? "/icons/home-reworked.png" : `/icons/${item.id}.png`} className={item.id === "home" ? "dock-home-art" : undefined} alt="" width={84} height={84} unoptimized />
+          </span>
+          <span className="dock-label">{item.label}</span>
         </Link>
       ))}
     </nav>

@@ -71,7 +71,7 @@ export default function LogsPage() {
         </div>
         <div className="log-header">
           <div>
-            <h1 id="log-heading">Your logs<span className="red-period">.</span></h1>
+            <h1 id="log-heading">Your logs<span className="accent-period">.</span></h1>
             <p>A meal at a time.</p>
           </div>
         </div>
