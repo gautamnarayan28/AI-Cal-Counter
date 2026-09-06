@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { CSSProperties, ChangeEvent, FormEvent } from "react";
+import type { ChangeEvent, FormEvent } from "react";
 import Link from "next/link";
 import FloatingNav from "./components/FloatingNav";
 import { goalFromSettings, loadCloudData, saveCloudData } from "./lib/calorie-data";
@@ -82,7 +82,7 @@ export default function Home() {
   const todaysMeals = meals.filter((meal) => meal.dateKey === todayKey);
   const consumed = todaysMeals.reduce((sum, meal) => sum + meal.calories, 0);
   const remaining = Math.max(goal - consumed, 0);
-  const progress = Math.min(Math.round((consumed / goal) * 100), 100);
+
 
   useEffect(() => {
     setTodayLabel(
@@ -233,31 +233,24 @@ export default function Home() {
         </header>
 
         <div className="welcome">
-          <p>Welcome,</p>
-          <h1 id="welcome-heading">Gautam.</h1>
+          <p>Your daily journal</p>
+          <h1 id="welcome-heading">Today<span className="red-period">.</span></h1>
         </div>
 
-        <section
-          className="calorie-orb"
-          aria-label={`${progress} percent used, ${remaining} calories remaining`}
-          style={{ "--progress": `${progress}%` } as CSSProperties}
-        >
-          <div className="orb-content">
-            <p>CALORIES LEFT</p>
-            <strong>{remaining.toLocaleString()}</strong>
-            <span className="orb-unit">of {goal.toLocaleString()} kcal</span>
-            <span className="orb-progress">{progress}% used</span>
-          </div>
-        </section>
-
-        <div className="daily-insight">
-          <span className="status-dot" aria-hidden="true" />
-          <p>
-            <strong>{remaining > 0 ? "You’re on pace." : "Target reached."}</strong>{" "}
-            {remaining > 0 ? "Your daily target leaves room for the next meal." : "You can still adjust any estimate below."}
-          </p>
+        <div className="calorie-figure">
+          <section className="calorie-orb" aria-label={consumed > goal ? `${consumed - goal} calories over target` : `${remaining} calories remaining`}>
+            <div className="orb-content">
+              <p>{consumed > goal ? "Over target" : "Calories left"}</p>
+              <strong>{(consumed > goal ? consumed - goal : remaining).toLocaleString()}</strong>
+              <span className="orb-unit">kcal</span>
+            </div>
+          </section>
         </div>
-
+        <div className="daily-totals">
+          <div><span className="red-dot" aria-hidden="true" /><span>Eaten</span><strong>{consumed.toLocaleString()}</strong></div>
+          <div><span>Daily target</span><strong>{goal.toLocaleString()}</strong></div>
+        </div>
+        <label className="composer-label" htmlFor="meal-description">What did you eat?</label>
         <form className="meal-composer" onSubmit={submitMeal}>
           <label className="sr-only" htmlFor="meal-description">Describe what you ate</label>
           <div className="text-entry">
@@ -288,7 +281,7 @@ export default function Home() {
 
         {estimateError && <p className="estimate-error" role="alert">{estimateError}</p>}
 
-        <p className="scroll-cue">Your saved meals are waiting in Logs.</p>
+        <Link className="journal-link" href="/logs">View your meal log <span aria-hidden="true">↗</span></Link>
       </section>
 
       <FloatingNav active="home" />

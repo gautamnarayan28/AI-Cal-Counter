@@ -19,7 +19,7 @@ export default function FloatingNav({ active }: { active: NavPage }) {
           href={item.href}
           key={item.id}
         >
-          <span aria-hidden="true">{item.icon}</span>
+          <span aria-hidden="true"></span>
           {item.label}
         </Link>
       ))}

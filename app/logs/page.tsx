@@ -63,7 +63,7 @@ export default function LogsPage() {
   }
 
   return (
-    <main className="app-shell page-shell dark-page">
+    <main className="app-shell page-shell">
       <section className="log-section page-section" aria-labelledby="log-heading">
         <div className="page-topline">
           <p className="section-label">MEAL HISTORY</p>
@@ -71,14 +71,14 @@ export default function LogsPage() {
         </div>
         <div className="log-header">
           <div>
-            <h1 id="log-heading">Your logs.</h1>
-            <p>Every saved meal, newest first.</p>
+            <h1 id="log-heading">Your logs<span className="red-period">.</span></h1>
+            <p>A meal at a time.</p>
           </div>
         </div>
 
         <div className="storage-note" role="status">
           <span aria-hidden="true" />
-          {ready ? "Synced to your private cloud" : "Opening your history…"}
+          {!ready ? "Opening your history…" : storageError ? "Sync unavailable" : "All meals saved"}
         </div>
 
         {storageError && <p className="estimate-error cloud-error" role="alert">{storageError}</p>}
@@ -102,7 +102,7 @@ export default function LogsPage() {
                     <time>{meal.time}</time>
                     <button className="meal-copy meal-open" type="button" onClick={() => setEditing(structuredClone(meal))}>
                       <h3>{meal.name}</h3>
-                      <p>{meal.note} · tap to adjust</p>
+                      <p>{meal.note}</p>
                     </button>
                     <strong>{meal.calories}</strong>
                   </article>
@@ -126,7 +126,7 @@ export default function LogsPage() {
             <label className="field-label" htmlFor="edit-meal-name">Meal</label>
             <input id="edit-meal-name" className="review-name" value={editing.name} onChange={(event) => setEditing({ ...editing, name: event.target.value })} />
             <div className="detected-heading">
-              <div><p className="section-label">ITEMS & QUANTITIES</p><span>Change what the photo got wrong</span></div>
+              <div><p className="section-label">ITEMS & QUANTITIES</p><span>Adjust foods and portions</span></div>
               <strong>{editing.items.length} items</strong>
             </div>
             <div className="detected-list">
