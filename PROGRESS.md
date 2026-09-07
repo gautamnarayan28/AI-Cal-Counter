@@ -1,6 +1,6 @@
 # PROGRESS.md — project status and agent handoff
 
-**Last updated: 2026-09-07 (Claude Code).** This file is the single source of truth for
+**Last updated: 2026-09-07 (Codex).** This file is the single source of truth for
 where the project stands. Every agent (Codex, Claude Code) reads it first and updates it
 before finishing. See `AGENTS.md` for the rules. If something here contradicts the code,
 the code wins — fix this file.
@@ -37,7 +37,7 @@ instruction below is a terminal command.
 
 | Component | State | Last verified | How |
 |---|---|---|---|
-| **iOS app** (`ios/`) | Builds clean, runs on simulator, MVP flow works | 7 Sep | `xcodebuild` + `swift test` 6/6 + hand-driven flow (§5) |
+| **iOS app** (`ios/`) | Builds and home screen runs on simulator; prior MVP verification in §5 | 7 Sep | Codex rebuilt, installed, launched and visually checked home; tests 6/6 and full flow from prior Claude session |
 | iOS → physical iPhone / TestFlight | **Not done** — needs owner's Apple account | — | — |
 | **INDB data** (`data/nutrition/indb-2024.sqlite`) | Complete, validated, 1,014 records, 917 with usable servings | 7 Sep | `python3 tests/test_indb_import.py` 5/5; `validation.json` |
 | INDB **license** | **Unresolved.** The dataset page states no license; only the paper is CC BY. | 7 Sep | Checked anuvaad.org.in |
@@ -225,6 +225,11 @@ Env: `OPENAI_API_KEY`, `ALLOWED_ESTIMATE_EMAILS` (see `.env.example`).
 
 ## Session log (newest first — add an entry every session)
 
+- **2026-09-07 — Codex simulator walkthrough, step 1.** Successfully rebuilt with
+  `xcodebuild`, opened Simulator, installed and launched on iPhone 17 Pro. Screenshot
+  confirmed the loaded home screen with 1,900 calories left and food picker entry.
+  Left the app open for the owner to try. No source changes; tests and meal flows
+  were not rerun this session.
 - **2026-09-07 — Codex handoff review.** Read the progress notes and repository
   instructions to catch up on the native iOS work. Implementation status is
   unchanged; the build, test, and simulator results above are from the previous
