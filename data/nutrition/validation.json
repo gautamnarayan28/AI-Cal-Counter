@@ -1,0 +1,960 @@
+{
+  "dataset": "INDB 2024",
+  "source_filename": "Indian Nutrient Databank 2024.xlsx",
+  "source_sha256": "c39023890f45b86b7f68578a4f740c5772234402111054c28a7a867d8dda25d9",
+  "source_sheet": "Sheet1",
+  "source_columns": [
+    "food_code",
+    "food_name",
+    "primarysource",
+    "energy_kj",
+    "energy_kcal",
+    "carb_g",
+    "protein_g",
+    "fat_g",
+    "freesugar_g",
+    "fibre_g",
+    "sfa_mg",
+    "mufa_mg",
+    "pufa_mg",
+    "cholesterol_mg",
+    "calcium_mg",
+    "phosphorus_mg",
+    "magnesium_mg",
+    "sodium_mg",
+    "potassium_mg",
+    "iron_mg",
+    "copper_mg",
+    "selenium_ug",
+    "chromium_mg",
+    "manganese_mg",
+    "molybdenum_mg",
+    "zinc_mg",
+    "vita_ug",
+    "vite_mg",
+    "vitd2_ug",
+    "vitd3_ug",
+    "vitk1_ug",
+    "vitk2_ug",
+    "folate_ug",
+    "vitb1_mg",
+    "vitb2_mg",
+    "vitb3_mg",
+    "vitb5_mg",
+    "vitb6_mg",
+    "vitb7_ug",
+    "vitb9_ug",
+    "vitc_mg",
+    "carotenoids_ug",
+    "servings_unit",
+    "unit_serving_energy_kj",
+    "unit_serving_energy_kcal",
+    "unit_serving_carb_g",
+    "unit_serving_protein_g",
+    "unit_serving_fat_g",
+    "unit_serving_freesugar_g",
+    "unit_serving_fibre_g",
+    "unit_serving_sfa_mg",
+    "unit_serving_mufa_mg",
+    "unit_serving_pufa_mg",
+    "unit_serving_cholesterol_mg",
+    "unit_serving_calcium_mg",
+    "unit_serving_phosphorus_mg",
+    "unit_serving_magnesium_mg",
+    "unit_serving_sodium_mg",
+    "unit_serving_potassium_mg",
+    "unit_serving_iron_mg",
+    "unit_serving_copper_mg",
+    "unit_serving_selenium_ug",
+    "unit_serving_chromium_mg",
+    "unit_serving_manganese_mg",
+    "unit_serving_molybdenum_mg",
+    "unit_serving_zinc_mg",
+    "unit_serving_vita_ug",
+    "unit_serving_vite_mg",
+    "unit_serving_vitd2_ug",
+    "unit_serving_vitd3_ug",
+    "unit_serving_vitk1_ug",
+    "unit_serving_vitk2_ug",
+    "unit_serving_folate_ug",
+    "unit_serving_vitb1_mg",
+    "unit_serving_vitb2_mg",
+    "unit_serving_vitb3_mg",
+    "unit_serving_vitb5_mg",
+    "unit_serving_vitb6_mg",
+    "unit_serving_vitb7_ug",
+    "unit_serving_vitb9_ug",
+    "unit_serving_vitc_mg",
+    "unit_serving_carotenoids_ug"
+  ],
+  "nutrient_basis": "Unprefixed nutrient columns: per 100 g; unit_serving_ columns: per reference serving.",
+  "methodology_url": "https://www.anuvaad.org.in/methodology/",
+  "import_version": 1,
+  "record_count": 1014,
+  "source_column_count": 82,
+  "missing_serving_calories": 82,
+  "missing_serving_unit": 97,
+  "usable_reference_servings": 917,
+  "source_reconciliation": "Every source cell matches imported table",
+  "sqlite_integrity": "ok",
+  "flagged_records": [
+    {
+      "food_code": "BFP546",
+      "food_name": "Pearl millet infant food (Bajra shishu aahaar)",
+      "source_row": 750,
+      "issues": [
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP547",
+      "food_name": "Sajina",
+      "source_row": 751,
+      "issues": [
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP548",
+      "food_name": "Cereal mix ",
+      "source_row": 752,
+      "issues": [
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP549",
+      "food_name": "Pulse mix",
+      "source_row": 753,
+      "issues": [
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP550",
+      "food_name": "Shishu ahar",
+      "source_row": 754,
+      "issues": [
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP552",
+      "food_name": "Cereal pulse mix with amylase rice flour",
+      "source_row": 755,
+      "issues": [
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP553",
+      "food_name": "Banana groundnut paste/puree",
+      "source_row": 756,
+      "issues": [
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP554",
+      "food_name": "Rice dal porridge (Chawal dal ki khichdi/khichri)",
+      "source_row": 757,
+      "issues": [
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP555",
+      "food_name": "Lentils and semolina porridge (Dal suji porridge/daliya)",
+      "source_row": 758,
+      "issues": [
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP556",
+      "food_name": "Spinach khichri (Palak khichri/khichdi)",
+      "source_row": 759,
+      "issues": [
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP557",
+      "food_name": "Vegetable mix",
+      "source_row": 760,
+      "issues": [
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP558",
+      "food_name": "Lentils and wheat porridge (Dal wheat porridge/daliya )",
+      "source_row": 761,
+      "issues": [
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP559",
+      "food_name": "Maize porridge",
+      "source_row": 762,
+      "issues": [
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP560",
+      "food_name": "Spinach peanut burfi (Palak aur mungfali ki burfi)",
+      "source_row": 763,
+      "issues": [
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "OSR112",
+      "food_name": "Pav bhaji",
+      "source_row": 893,
+      "issues": [
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC071",
+      "food_name": "White sauce (thin)",
+      "source_row": 934,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC072",
+      "food_name": "White sauce (medium)",
+      "source_row": 935,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC073",
+      "food_name": "White sauce (thick)",
+      "source_row": 936,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC074",
+      "food_name": "Cheese sauce",
+      "source_row": 937,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC075",
+      "food_name": "Egg sauce",
+      "source_row": 938,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC076",
+      "food_name": "Mushroom sauce",
+      "source_row": 939,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC077",
+      "food_name": "Mustard sauce",
+      "source_row": 940,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC078",
+      "food_name": "Brown sauce",
+      "source_row": 941,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC130",
+      "food_name": "Classic italian pasta",
+      "source_row": 942,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC131",
+      "food_name": "Pasta spinach sauce",
+      "source_row": 943,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC132",
+      "food_name": "Pasta cheese sauce",
+      "source_row": 944,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC266",
+      "food_name": "Mayonnaise",
+      "source_row": 945,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC267",
+      "food_name": "Low calorie quick mayonnaise",
+      "source_row": 946,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC268",
+      "food_name": "Thousand island dressing",
+      "source_row": 947,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC388",
+      "food_name": "Curd dip",
+      "source_row": 948,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC394",
+      "food_name": "Short crust pastry",
+      "source_row": 949,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC406",
+      "food_name": "Choux pastry",
+      "source_row": 950,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC410",
+      "food_name": "Flaky pastry",
+      "source_row": 951,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC428",
+      "food_name": "Sponge cake ",
+      "source_row": 952,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC434",
+      "food_name": "Glace icing",
+      "source_row": 953,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC436",
+      "food_name": "Royal icing",
+      "source_row": 954,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC437",
+      "food_name": "American frosting",
+      "source_row": 955,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC438",
+      "food_name": "Gum icing",
+      "source_row": 956,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC475",
+      "food_name": "Channa murmura premix",
+      "source_row": 957,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC476",
+      "food_name": "Cracked wheat and green gram dal premix (Dalia moong dal premix)",
+      "source_row": 958,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC477",
+      "food_name": "Rice flakes and roasted channa ",
+      "source_row": 959,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC479",
+      "food_name": "Spinach soup in milk ",
+      "source_row": 960,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC480",
+      "food_name": "Vegetable soup",
+      "source_row": 961,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC481",
+      "food_name": "Mashed banana with milk",
+      "source_row": 962,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC484",
+      "food_name": "Poha with curd (Poha aur dahi)",
+      "source_row": 963,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC485",
+      "food_name": "Potato with curd",
+      "source_row": 964,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC486",
+      "food_name": "Sweet wheat porridge (Sweet dalia)",
+      "source_row": 965,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC487",
+      "food_name": "Vegetable khichdi/khichri",
+      "source_row": 966,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC489",
+      "food_name": "Moong dal mixture",
+      "source_row": 967,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC490",
+      "food_name": "Cracked wheat khichri/khichdi (Dalia khichri/khichdi)",
+      "source_row": 968,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC492",
+      "food_name": "Stewed apple",
+      "source_row": 969,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC493",
+      "food_name": "Lemon squash (Nimbu ka squash)",
+      "source_row": 970,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC494",
+      "food_name": "Orange squash (Santre ka squash)",
+      "source_row": 971,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC495",
+      "food_name": "Lichi squash",
+      "source_row": 972,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC496",
+      "food_name": "Mango squash (Aam ka squash)",
+      "source_row": 973,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC497",
+      "food_name": "Pineapple squash (Ananas ka squash)",
+      "source_row": 974,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC498",
+      "food_name": "Lemon and ginger squash (Nimbu aur adrak ka squash)",
+      "source_row": 975,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC499",
+      "food_name": "Apple jam (Seb ka murabba)",
+      "source_row": 976,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC500",
+      "food_name": "Plum jam (Aloo bukhara jam)",
+      "source_row": 977,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC501",
+      "food_name": "Pineapple jam ",
+      "source_row": 978,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC502",
+      "food_name": "Guava jelly (Amrood ki jelly)",
+      "source_row": 979,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC503",
+      "food_name": "Orange marmalade (Santray ka murabba)",
+      "source_row": 980,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC504",
+      "food_name": "Carrot murabba (Gajar ka murabba)",
+      "source_row": 981,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC505",
+      "food_name": "Gooseberry marmalade (Amla murabba)",
+      "source_row": 982,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC506",
+      "food_name": "Ginger candy (Adrak ki candy)",
+      "source_row": 983,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC507",
+      "food_name": "Mango pickle (Aam ka achaar)",
+      "source_row": 984,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC509",
+      "food_name": "Mixed vegetable pickle (Sabziyoon ka achaar)",
+      "source_row": 985,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC511",
+      "food_name": "Sweet lemon pickle (Neembu ka meetha achaar)",
+      "source_row": 986,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC512",
+      "food_name": "Plum chutney (Aloo bukhara ki chutney)",
+      "source_row": 987,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC513",
+      "food_name": "Raw mango chutney (Kachhe aam/Kairi ki chutney)",
+      "source_row": 988,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC514",
+      "food_name": "Tomato sauce",
+      "source_row": 989,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "ASC515",
+      "food_name": "Tomato puree",
+      "source_row": 990,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP001",
+      "food_name": "Garam masala",
+      "source_row": 991,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP002",
+      "food_name": "Chat masala",
+      "source_row": 992,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP003",
+      "food_name": "Kashmiri masala",
+      "source_row": 993,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP004",
+      "food_name": "Rasam powder (Rasam masala)",
+      "source_row": 994,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP005",
+      "food_name": "Sambar powder (Sambar masala)",
+      "source_row": 995,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP095",
+      "food_name": "Tartare sauce",
+      "source_row": 996,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP096",
+      "food_name": "Barbeque sauce",
+      "source_row": 997,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP097",
+      "food_name": "Bread sauce",
+      "source_row": 998,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP163",
+      "food_name": "Green chilli sauce",
+      "source_row": 999,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP164",
+      "food_name": "Home made plain noodles",
+      "source_row": 1000,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP166",
+      "food_name": "Dal moong",
+      "source_row": 1001,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP167",
+      "food_name": "Cumin seeds baghar (Jeera baghar/tadka)",
+      "source_row": 1002,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP168",
+      "food_name": "Onion tomato baghar (Pyaaz tamatar ka tadka)",
+      "source_row": 1003,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP169",
+      "food_name": "Mustard seeds baghar (Mustard seed tadka)",
+      "source_row": 1004,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP360",
+      "food_name": "Hot cherry sauce",
+      "source_row": 1005,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP583",
+      "food_name": "Apple jelly (Seb ki jelly)",
+      "source_row": 1006,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP585",
+      "food_name": "Marmalade (Murabba)",
+      "source_row": 1007,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP589",
+      "food_name": "Plum squash (Aloo bukhara squash)",
+      "source_row": 1008,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP595",
+      "food_name": "Lemon green chilli pickle (Nimboo aur hari mirch ka achaar)",
+      "source_row": 1009,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP597",
+      "food_name": "Brinjal pickle (Baingan ka achaar)",
+      "source_row": 1010,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP598",
+      "food_name": "Sweet and sour tomato pickle (Khatta meetha tamatar ka achaar)",
+      "source_row": 1011,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP599",
+      "food_name": "Jhatpat achar with carrot (Jhatpat achaar gajar ke saath)",
+      "source_row": 1012,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP601",
+      "food_name": "Tomato chutney (Tamatar ki chutney)",
+      "source_row": 1013,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "BFP602",
+      "food_name": "Tomato ketchup",
+      "source_row": 1014,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    },
+    {
+      "food_code": "OSR082",
+      "food_name": "Bengal 5 Spice Blend (Panch Phoran)",
+      "source_row": 1015,
+      "issues": [
+        "missing_serving_calories",
+        "missing_serving_unit"
+      ]
+    }
+  ]
+}

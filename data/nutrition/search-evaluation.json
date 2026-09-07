@@ -1,0 +1,203 @@
+{
+  "scope": "22 development retrieval cases, not an independent nutrition-accuracy benchmark",
+  "cases": [
+    {
+      "query": "masala dosa",
+      "expected": "ASC146",
+      "top1": "ASC146",
+      "top3_hit": true,
+      "status": "exact_match",
+      "lexical_top1": "ASC146",
+      "semantic_top1": "ASC146"
+    },
+    {
+      "query": "paneer dosa",
+      "expected": "BFP151",
+      "top1": "BFP151",
+      "top3_hit": true,
+      "status": "exact_match",
+      "lexical_top1": "BFP151",
+      "semantic_top1": "BFP151"
+    },
+    {
+      "query": "plain dosa",
+      "expected": "BFP148",
+      "top1": "BFP148",
+      "top3_hit": true,
+      "status": "exact_match",
+      "lexical_top1": "BFP148",
+      "semantic_top1": "BFP148"
+    },
+    {
+      "query": "potato dosa",
+      "expected": "ASC146",
+      "top1": "ASC146",
+      "top3_hit": true,
+      "status": "exact_match",
+      "lexical_top1": "ASC146",
+      "semantic_top1": "ASC146"
+    },
+    {
+      "query": "aloo dosai",
+      "expected": "ASC146",
+      "top1": "ASC146",
+      "top3_hit": true,
+      "status": "exact_match",
+      "lexical_top1": "ASC146",
+      "semantic_top1": "ASC146"
+    },
+    {
+      "query": "dosa without potato",
+      "expected": "BFP148",
+      "top1": "BFP148",
+      "top3_hit": true,
+      "status": "needs_review",
+      "lexical_top1": "BFP148",
+      "semantic_top1": "BFP148"
+    },
+    {
+      "query": "paneer dosa without potato",
+      "expected": "BFP151",
+      "top1": "BFP151",
+      "top3_hit": true,
+      "status": "needs_review",
+      "lexical_top1": "BFP151",
+      "semantic_top1": "BFP151"
+    },
+    {
+      "query": "rava dosa",
+      "expected": "ASC147",
+      "top1": "ASC147",
+      "top3_hit": true,
+      "status": "needs_review",
+      "lexical_top1": "ASC147",
+      "semantic_top1": "ASC147"
+    },
+    {
+      "query": "jowar dosa",
+      "expected": "OSR151",
+      "top1": "OSR151",
+      "top3_hit": true,
+      "status": "exact_match",
+      "lexical_top1": "OSR151",
+      "semantic_top1": "OSR151"
+    },
+    {
+      "query": "moong dosa",
+      "expected": "OSR103",
+      "top1": "OSR103",
+      "top3_hit": true,
+      "status": "needs_review",
+      "lexical_top1": "OSR103",
+      "semantic_top1": "OSR103"
+    },
+    {
+      "query": "steamed rice and lentil cakes",
+      "expected": "ASC144",
+      "top1": "ASC144",
+      "top3_hit": true,
+      "status": "needs_review",
+      "lexical_top1": "ASC144",
+      "semantic_top1": "ASC144"
+    },
+    {
+      "query": "crispy rice pancake stuffed with potato",
+      "expected": "ASC146",
+      "top1": "ASC146",
+      "top3_hit": true,
+      "status": "needs_review",
+      "lexical_top1": "ASC146",
+      "semantic_top1": "ASC146"
+    },
+    {
+      "query": "rice crepe filled with cottage cheese",
+      "expected": "BFP151",
+      "top1": "BFP151",
+      "top3_hit": true,
+      "status": "needs_review",
+      "lexical_top1": "BFP151",
+      "semantic_top1": "OSR134"
+    },
+    {
+      "query": "kidney beans in gravy",
+      "expected": "ASC165",
+      "top1": "ASC165",
+      "top3_hit": true,
+      "status": "needs_review",
+      "lexical_top1": "ASC165",
+      "semantic_top1": "OSR030"
+    },
+    {
+      "query": "whole wheat flatbread",
+      "expected": "ASC096",
+      "top1": "ASC096",
+      "top3_hit": true,
+      "status": "needs_review",
+      "lexical_top1": "ASC096",
+      "semantic_top1": "ASC096"
+    },
+    {
+      "query": "idly",
+      "expected": "ASC144",
+      "top1": "ASC144",
+      "top3_hit": true,
+      "status": "exact_match",
+      "lexical_top1": "ASC144",
+      "semantic_top1": "BFP147"
+    },
+    {
+      "query": "sambhar",
+      "expected": "ASC167",
+      "top1": "ASC167",
+      "top3_hit": true,
+      "status": "exact_match",
+      "lexical_top1": "ASC167",
+      "semantic_top1": "BFP005"
+    },
+    {
+      "query": "paneer paratha",
+      "expected": "ASC105",
+      "top1": "ASC105",
+      "top3_hit": true,
+      "status": "needs_review",
+      "lexical_top1": "ASC105",
+      "semantic_top1": "ASC105"
+    },
+    {
+      "query": "aloo paratha",
+      "expected": "ASC098",
+      "top1": "ASC098",
+      "top3_hit": true,
+      "status": "needs_review",
+      "lexical_top1": "ASC098",
+      "semantic_top1": "ASC098"
+    },
+    {
+      "query": "2 masala dosas",
+      "expected": "ASC146",
+      "top1": "ASC146",
+      "top3_hit": true,
+      "status": "needs_review",
+      "lexical_top1": "ASC146",
+      "semantic_top1": "BFP150"
+    },
+    {
+      "query": "200 g masala dosa",
+      "expected": "ASC146",
+      "top1": "ASC146",
+      "top3_hit": true,
+      "status": "needs_review",
+      "lexical_top1": "ASC146",
+      "semantic_top1": "OSR103"
+    },
+    {
+      "query": "plain dosa no paneer or potato",
+      "expected": "BFP148",
+      "top1": "BFP148",
+      "top3_hit": true,
+      "status": "needs_review",
+      "lexical_top1": "BFP148",
+      "semantic_top1": "BFP148"
+    }
+  ]
+}

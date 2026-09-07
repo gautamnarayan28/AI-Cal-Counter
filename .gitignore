@@ -31,6 +31,10 @@ yarn-error.log*
 # full-resolution icon source art — kept locally, never shipped or committed
 /design/
 
+# rebuildable search index (embeddings) — regenerate with
+# `python scripts/nutrition_search.py build`; the source of truth is indb-2024.sqlite
+/data/nutrition/indb-search.sqlite
+
 # env files (can opt-in for committing if needed)
 .env*
 !.env.example
