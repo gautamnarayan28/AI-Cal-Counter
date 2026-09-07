@@ -38,7 +38,7 @@ instruction below is a terminal command.
 | Component | State | Last verified | How |
 |---|---|---|---|
 | **iOS app** (`ios/`) | Builds and home screen runs on simulator; prior MVP verification in §5 | 7 Sep | Codex rebuilt, installed, launched and visually checked home; tests 6/6 and full flow from prior Claude session |
-| iOS → physical iPhone / TestFlight | **Not done** — needs owner's Apple account | — | — |
+| iOS → physical iPhone / TestFlight | iPhone 13 Pro connected and paired; Developer Mode disabled; signing team not configured; no install yet | 7 Sep | `devicectl list devices` and `device info details` |
 | **INDB data** (`data/nutrition/indb-2024.sqlite`) | Complete, validated, 1,014 records, 917 with usable servings | 7 Sep | `python3 tests/test_indb_import.py` 5/5; `validation.json` |
 | INDB **license** | **Unresolved.** The dataset page states no license; only the paper is CC BY. | 7 Sep | Checked anuvaad.org.in |
 | **Search prototype** (`scripts/nutrition_search.py`) | Works offline in Python only; **not runnable on this Mac right now** (no `fastembed`, model cache gone); not connected to anything | 6 Sep (Codex) | `search-evaluation.json` 22/22 — but lexical-only also scored 22/22 |
@@ -225,6 +225,11 @@ Env: `OPENAI_API_KEY`, `ALLOWED_ESTIMATE_EMAILS` (see `.env.example`).
 
 ## Session log (newest first — add an entry every session)
 
+- **2026-09-07 — Codex physical-device setup.** Confirmed wired, paired iPhone
+  13 Pro running iOS 26.5 via `devicectl`. Developer Mode is disabled; owner must
+  enable it before proceeding. Project has no development team configured. No
+  physical-device build or installation yet. Owner reported completing the simulator
+  food/log walkthrough; not independently re-tested in this session.
 - **2026-09-07 — Codex simulator walkthrough, step 1.** Successfully rebuilt with
   `xcodebuild`, opened Simulator, installed and launched on iPhone 17 Pro. Screenshot
   confirmed the loaded home screen with 1,900 calories left and food picker entry.
