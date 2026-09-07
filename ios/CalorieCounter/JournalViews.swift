@@ -236,6 +236,22 @@ struct LogsScreen: View {
     @State private var editing: JournalMeal?
     @State private var pendingDelete: JournalMeal?
     var days: [Date] { Set(store.state.meals.map { Calendar.current.startOfDay(for: $0.date) }).sorted(by: >) }
+    private func portionLabel(_ meal: JournalMeal) -> String {
+        let amount = meal.quantity.formatted()
+        if meal.basis == .grams { return "\(amount) g" }
+        let unit = meal.food.servingUnit ?? "serving"
+        return "\(amount) \(meal.quantity == 1 ? unit : pluralized(unit))"
+    }
+    /// Plural for INDB serving labels: bowl → bowls, glass → glasses, dish → dishes,
+    /// pastry → pastries. Measures ("ml", "gm") and labels already plural ("cookies",
+    /// "half-pints") pass through unchanged.
+    private func pluralized(_ unit: String) -> String {
+        let lower = unit.lowercased()
+        if ["ml", "gm", "g"].contains(lower) || (lower.hasSuffix("s") && !lower.hasSuffix("ss")) { return unit }
+        if ["ss", "sh", "ch", "x", "z"].contains(where: lower.hasSuffix) { return unit + "es" }
+        if lower.hasSuffix("y"), let beforeY = lower.dropLast().last, !"aeiou".contains(beforeY) { return String(unit.dropLast()) + "ies" }
+        return unit + "s"
+    }
     var body: some View {
         NavigationStack {
             List {
@@ -252,13 +268,14 @@ struct LogsScreen: View {
                                 HStack {
                                     VStack(alignment: .leading, spacing: 5) {
                                         Text(meal.food.name.lowercased()).foregroundStyle(Palette.ink)
-                                        Text("\(meal.quantity.formatted()) \(meal.basis == .grams ? "g" : meal.food.servingUnit ?? "serving") · \(meal.date.formatted(date: .omitted, time: .shortened).lowercased())").font(Palette.font(12)).foregroundStyle(.secondary)
+                                        Text("\(portionLabel(meal)) · \(meal.date.formatted(date: .omitted, time: .shortened).lowercased())").font(Palette.font(12)).foregroundStyle(.secondary)
                                     }
                                     Spacer()
                                     Text(meal.calories, format: .number.precision(.fractionLength(0)))
                                 }.padding(.vertical, 7)
                             }
-                            .swipeActions { Button("delete", role: .destructive) { pendingDelete=meal } }
+                            // The app-wide blue tint would otherwise override the destructive red.
+                            .swipeActions { Button("delete", role: .destructive) { pendingDelete=meal }.tint(.red) }
                         }
                     } header: {
                         HStack {
@@ -289,8 +306,14 @@ struct SettingsScreen: View {
                 Section { Text("meals are saved on this iphone. account sync and ai estimates are not connected yet.").foregroundStyle(.secondary) }
                 if let error { Text(error).foregroundStyle(Palette.blue) }
                 Button("save") {
-                    if let value=Double(target), store.setTarget(value) { dismiss() }
-                    else { error=store.error ?? "enter a target between 500 and 10,000 kcal" }
+                    // Validate here so a bad value stays an inline message. Handing it to the
+                    // store sets the shared error, which raises the root alert and tears this
+                    // sheet down mid-edit, discarding what the user typed.
+                    guard let value = Double(target), value.isFinite, (500...10000).contains(value) else {
+                        error = JournalError.invalidTarget.errorDescription
+                        return
+                    }
+                    if store.setTarget(value) { dismiss() } else { error = store.error }
                 }
             }.scrollContentBackground(.hidden).background(Palette.cream)
                 .navigationTitle("settings").navigationBarTitleDisplayMode(.inline)

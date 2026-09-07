@@ -14,14 +14,10 @@ Native SwiftUI project targeting iOS 17+, alongside the existing website. Open `
 
 ## Verification status
 
-Verified on 7 September 2026 with Xcode 26.6 (Swift 6.3.3):
-
-- `swift test --package-path ios/CalorieCore`: 6 of 6 XCTest cases pass — portion bases and fractions, invalid quantities, missing-serving handling, persistence round-trip and edit, corrupt-file preservation, local-day totals (IST case).
-- `xcodebuild -scheme CalorieCounter -destination 'generic/platform=iOS Simulator' build`: succeeds with no errors or warnings.
-- Installed and launched on an iPhone 17 Pro simulator; the Home screen renders and the process stays alive. Food picker, meal editor, logs and settings have been exercised only through the unit tests, not yet by tapping through the UI on a simulator or device.
-- All 1,014 bundled nutrition records match the validated SQLite source.
-
-Not yet verified: a physical-device install, VoiceOver pass, Dynamic Type at the largest sizes, and behaviour on a fresh device with no Application Support directory.
+Current build, test and simulator status — including the hand-verified MVP flow and the
+exact terminal commands to reproduce it without the Xcode GUI — is maintained in the
+repo-root **[`PROGRESS.md`](../PROGRESS.md)** (sections 3–5). That file is the single
+source of truth; this README describes the design only.
 
 ## First run
 

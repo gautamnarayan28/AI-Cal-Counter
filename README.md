@@ -1,3 +1,12 @@
+# Calorie Counter
+
+> **Start with [`PROGRESS.md`](PROGRESS.md).** It is the always-current status and
+> handoff document for this repo — what exists (web app, native iOS app, INDB
+> nutrition data), what is verified, what is open, and how to build and run the iOS
+> app from the terminal. Agents: also read [`AGENTS.md`](AGENTS.md).
+
+The rest of this file is the original web-app starter documentation.
+
 # vinext-starter
 
 A clean full-stack starter running on
