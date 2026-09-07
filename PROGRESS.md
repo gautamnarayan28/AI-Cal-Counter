@@ -225,6 +225,10 @@ Env: `OPENAI_API_KEY`, `ALLOWED_ESTIMATE_EMAILS` (see `.env.example`).
 
 ## Session log (newest first — add an entry every session)
 
+- **2026-09-07 — Codex handoff review.** Read the progress notes and repository
+  instructions to catch up on the native iOS work. Implementation status is
+  unchanged; the build, test, and simulator results above are from the previous
+  session and were not rerun during this documentation-only review.
 - **2026-09-07 — Claude Code.** Reviewed the pivot; verified iOS builds/tests/runs for
   the first time (README had claimed no Xcode). Added AppIcon set, `ONLY_ACTIVE_ARCH`,
   Medium font use; gitignored search index; committed `d188663`. Hand-drove the full
